@@ -1,0 +1,53 @@
+  body {
+    background-image: url('http://www.brasfut.com.br/wp-content/uploads/2016/08/004.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+    /*background: rgb(56, 53, 55);*/
+  }
+  .conteudo {
+    background-color: white;
+    width: 100%;
+    padding: 30px;
+    /*padding-top: 0px;*/
+    display: inline-block;
+  }
+
+  .navbar-default {
+    background-color: #0f679f;
+    border: 0px;
+  }
+
+  .navbar-default .navbar-nav>li>a{
+    color: white;
+  }
+
+  .navbar-default .navbar-nav>li>a:hover{
+    color: white;
+    background-color: #4699ce;
+  }
+
+  .navbar {
+    border-radius: 0px;
+  }
+
+  .navbar-default .navbar-nav>.open>a {
+    background-color: white;
+  }
+
+  #user-info li.user-info-li {
+    /*float: left;*/
+    list-style: none;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  #user-info li img {
+    border: 3px solid #ccc;
+  }
+
+  .retorno {
+    display: none;
+    text-align: left !important;
+  }
