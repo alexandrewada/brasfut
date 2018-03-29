@@ -14,10 +14,16 @@
 				<hr>
 				<div class='row'>
 					<div class="col-md-4">
-						
 						<div class="form-group">
 							<label>Nome do Local</label>
 							<input type="text" class='form-control' placeholder="Ex: Clube Castelo Branco"  style="width: 300px;" name="nome_local">
+						</div>		
+						<div class="form-group">
+							<label>Telefone</label>
+							<input type="text" class='form-control' data-mask='(00) 0000-0000' placeholder="Ex: (11) 00000-0000"  style="width: 300px;" name="telefone_local">
+						</div>			<div class="form-group">
+							<label>Celular</label>
+							<input type="text" class='form-control' data-mask='(00) 00000-0000' placeholder="Ex: (11) 0000-0000"  style="width: 300px;" name="celular_local">
 						</div>
 						
 						<div class="form-group">
@@ -38,7 +44,7 @@
 						</div>
 					</div>
 					<div class='col-md-4'>
-						<div hidden id='aposCEP'>
+						<div  id='aposCEP'>
 							<div class="form-group">
 								<label>UF</label>
 								<input type="text" class='form-control' style="width: 50px;" readonly name="uf">
@@ -58,8 +64,22 @@
 							</div>
 							<div class="form-group">
 							    <label>Ponto de Referência</label>
-							    <input type="text" class='form-control' placeholder="Ex: Próximo a escola ETEC"  style="width: 300px;" name="nome_referencia">
+							    <textarea class='form-control' placeholder="Ex: Próximo a escola ETEC"  style="width: 300px;" name="referencia"></textarea>
 						    </div>
+						</div>
+					</div>
+					<div class='col-md-4'>
+						<div class='form-group'>
+							<h5>Marque as estruturas que o local possui</h5>
+							
+								<?foreach ($listarEstruturas as $key => $v):?>
+									<div>
+									<input id='<?=$v->id_estrutura;?>' type="checkbox" value='<?=$v->id_estrutura;?>' name="estruturas[]">
+									<label for='<?=$v->id_estrutura;?>'><?=$v->nome;?></label>
+									</div>
+
+								<?endforeach;?>
+					
 						</div>
 					</div>
 				</div>
