@@ -6,6 +6,55 @@ class Equipe_model extends CI_Model
     private $table = 'tb_equipe';
 
 
+    public function Ranking($filters) {
+        $this->db->select('*');
+        $this->db->select_sum('tb_equipe_pontuacao.pontos');
+        $this->db->from('tb_equipe_pontuacao');
+        $this->db->join('tb_equipe','tb_equipe.id_equipe = tb_equipe_pontuacao.id_equipe','inner');
+        $this->db->join('tb_modalidade','tb_equipe.id_modalidade = tb_modalidade.id_modalidade','inner');
+        $this->db->join('tb_categoria','tb_equipe.id_categoria = tb_categoria.id_categoria','inner');
+        $this->db->group_by('tb_equipe.id_equipe');
+        $this->db->order_by('tb_equipe_pontuacao.pontos','DESC');
+
+        foreach ($filters as $campo => $value) {
+
+            if($value == ''){
+                continue;
+            }
+
+            switch ($campo) {
+                case 'estado':
+                    $this->db->where('tb_equipe.uf',$value);
+                break;
+
+                case 'cidade':
+                    $this->db->where('tb_equipe.cidade',$value);
+                break;
+
+                case 'equipe_nome':
+                    $this->db->like('tb_equipe.nome_equipe',$value);
+                break;
+
+                case 'id_modalidade':
+                    $this->db->where('tb_modalidade.id_modalidade',$value);
+                break; 
+
+                case 'id_categoria':
+                    $this->db->where('tb_categoria.id_categoria',$value);
+                break;
+
+                default:
+                     $this->db->like($campo,$value);
+                break;
+
+            }
+        }
+
+        
+        return $this->db->get()->result_object();
+    }
+
+
     public function getAll() {
     	$this->db->order_by('nome_equipe','ASC');
         $this->db->where('id_modalidade',$this->session->userdata('id_modalidade'));

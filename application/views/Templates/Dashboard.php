@@ -141,8 +141,10 @@
               <?endif;?>
 
               <?if(in_array($this->session->userdata('id_equipe_tipo'), array(2,3))):?>
-                <li><a href="#"><span class='glyphicon glyphicon-sort-by-order'></span> Ranking</a></li>
+                <li><a href="<?=base_url('/equipe/ranking');?>"><span class='glyphicon glyphicon-sort-by-order'></span> Ranking</a></li>
               <?endif;?>
+
+                <li><a href="<?=base_url('local/listar');?>"><span class='glyphicon glyphicon-map-marker'></span> Locais</a></li>
 
               <?if(in_array($this->session->userdata('id_equipe_tipo'), array(2,3))):?>
               	<li><a href="#"><span class='glyphicon glyphicon glyphicon-usd'></span> Financeiro</a></li>

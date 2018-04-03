@@ -44,7 +44,7 @@ class Local_model extends CI_Model
                 break;
 
                 default:
-                     $this->db->where($campo,$value);
+                     $this->db->like($campo,$value);
                 break;
 
             }
@@ -69,6 +69,11 @@ class Local_model extends CI_Model
 
     public function getCidades() {
         $this->db->group_by('cidade');
+        return $this->db->get('tb_local')->result();
+    }  
+
+    public function getEstados() {
+        $this->db->group_by('uf');
         return $this->db->get('tb_local')->result();
     }
 
