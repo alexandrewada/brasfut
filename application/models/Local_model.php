@@ -70,6 +70,11 @@ class Local_model extends CI_Model
     public function getCidades() {
         $this->db->group_by('cidade');
         return $this->db->get('tb_local')->result();
+    }
+
+    public function getLocais() {
+        $this->db->group_by('nome_local');
+        return $this->db->get('tb_local')->result();
     }  
 
     public function getEstados() {

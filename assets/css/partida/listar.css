@@ -1,0 +1,72 @@
+
+.lista-convites {
+padding: 0px;
+margin: 0px;
+max-height: 210px;
+}
+.lista-convites li {
+    list-style: none;
+    display: flex;
+    /* border-bottom: 1px solid #ccc; */
+    /* padding-top: 20px; */
+    padding-bottom: 20px;
+    /* padding-left: 10px; */
+}
+
+.lista-convites .box-calendario {
+width: 60px;
+text-align: center;
+float: left;
+border: 1px solid #c8d8d8;
+border-top: 0;
+border-top: 4px solid red;
+height: 60px;
+background-color: #f7f9f9;
+background-image: -moz-linear-gradient(top, #ffffff, #ecefef);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ecefef));
+background-image: -webkit-linear-gradient(top, #ffffff, #ecefef);
+background-image: -o-linear-gradient(top, #ffffff, #ecefef);
+background-image: linear-gradient(to bottom, #ffffff, #ecefef);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffecefef', GradientType=0);
+text-align: center;
+}
+.lista-convites .box-calendario span.mes {
+font-size: 20px;
+/*font-family: verdana;
+*/
+color: gray;
+display: block;
+}
+.lista-convites .box-calendario span.dia {
+font-size: 15px;
+display: block;
+}
+.lista-convites .box-calendario span.hora_comeca {
+font-size: 10px;
+margin-top: 0px;
+display: block;
+}
+.lista-convites .box-descricao {
+margin-left: 10px;
+border-left: 2px solid #ccc;
+padding-left: 10px;
+}
+.lista-convites .box-descricao span.title{
+color: #4285f4;
+font-family: Verdana;
+font-weight: 500;
+display: block;
+}
+.lista-convites .box-descricao span.descricao{
+font-size: 11px;
+display: block;
+}
+.lista-convites .box-descricao span.title:hover{
+text-decoration: underline;
+cursor: pointer;
+}
+.lista-convites .box-descricao div.botoes{
+display: block;
+text-align: left;
+}

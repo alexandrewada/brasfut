@@ -17,6 +17,20 @@
 			}
 		}
 
+		public function Listar() {
+			$this->load->model('Modalidade_model');
+			$this->load->model('Partida_model');
+			$this->load->model('Categoria_model');
+			$this->load->model('Local_model');
+			$view['partidas']			= $this->Partida_model->getPartidas($this->input->get(null,true));
+			$view['listarModalidade']	= $this->Modalidade_model->getAll();
+			$view['listarCategorias']	= $this->Categoria_model->getAll();
+			$view['listarCidades']		= $this->Local_model->getCidades();
+			$view['listarEstados']		= $this->Local_model->getEstados();
+			$view['listarLocais']		  = $this->Local_model->getLocais();
+			$this->template->load('Templates/Dashboard','Partida/Listar',$view);
+		}
+
 		public function cancelarreserva() {
 			header("Content-type: application/json");
 			$this->form_validation->set_rules('id_equipe','ID equipe','required|numeric');

@@ -6,6 +6,57 @@ class Partida_model extends CI_Model {
     public  $last_insert_id;
 
 
+    public function getPartidas($filters) {
+        $this->db->select('*');
+        $this->db->from('tb_partida');
+        $this->db->join('tb_equipe as equipe_desafiante','equipe_desafiante.id_equipe = tb_partida.id_equipe_desafiante','inner');
+        $this->db->join('tb_equipe as equipe_desafiado','equipe_desafiado.id_equipe = tb_partida.id_equipe_desafiante','inner');
+        $this->db->join('tb_modalidade','tb_partida.id_modalidade = tb_modalidade.id_modalidade','inner');
+        $this->db->join('tb_local','tb_local.id_local = tb_partida.id_local','inner');
+       
+        foreach ($filters as $campo => $value) {
+
+            if($value == ''){
+                continue;
+            }
+
+            switch ($campo) {
+                case 'estado':
+                    $this->db->where('tb_local.uf',$value);
+                break;
+
+                case 'cidade':
+                    $this->db->where('tb_local.cidade',$value);
+                break;
+
+                case 'equipe_nome':
+                    $this->db->like('equipe_desafiante.nome_equipe',$value);
+                break;
+
+                case 'id_modalidade':
+                    $this->db->where('tb_partida.id_modalidade',$value);
+                break; 
+
+                case 'id_categoria':
+                    $this->db->where('equipe_desafiante.id_categoria',$value);
+                break;
+
+                case 'id_local':
+                    $this->db->where('tb_local.id_local',$value);
+                break;
+
+                default:
+                     $this->db->like($campo,$value);
+                break;
+
+            }
+        }
+
+        
+        return $this->db->get()->result_object();
+    }
+
+
     public function DiferenciaDias($data1,$data2){
 		$data_atual = new DateTime($data1);
 		$data_jogo  = new DateTime($data2);

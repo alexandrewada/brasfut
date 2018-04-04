@@ -128,6 +128,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-left">
               <li><a href="<?=base_url('dashboard');?>"><span class='glyphicon glyphicon-th-large'></span> Dashboard</a></li>
+
+              <li><a href="<?=base_url('partida/listar');?>"><span class='glyphicon glyphicon-map-marker'></span> Partidas</a></li>
+
                  <?if(in_array($this->session->userdata('id_equipe_tipo'), array(2,3))):?>
               	<li><a href="<?=base_url('equipe/detalhes/'.$this->session->userdata('id_equipe'));?>"><span class='glyphicon glyphicon-user'></span> Meu Time</a></li>
               <?endif;?>
