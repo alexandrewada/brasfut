@@ -52,6 +52,8 @@ class Partida_model extends CI_Model {
             }
         }
 
+        $this->db->group_by('tb_partida.id_partida');
+
         
         return $this->db->get()->result_object();
     }

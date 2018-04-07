@@ -6,6 +6,58 @@ class Equipe_model extends CI_Model
     private $table = 'tb_equipe';
 
 
+    public function getEquipes($filters){
+
+        $this->db->select('*');
+        $this->db->join('tb_modalidade','tb_equipe.id_modalidade = tb_modalidade.id_modalidade','inner');
+        $this->db->join('tb_categoria','tb_equipe.id_categoria = tb_categoria.id_categoria','inner');
+
+        $this->db->from('tb_equipe');
+    
+
+        foreach ($filters as $campo => $value) {
+
+            if($value == ''){
+                continue;
+            }
+
+            switch ($campo) {
+                case 'estado':
+                    $this->db->where('tb_equipe.uf',$value);
+                break;
+
+                case 'cidade':
+                    $this->db->where('tb_equipe.cidade',$value);
+                break;
+
+                case 'equipe_nome':
+                    $this->db->like('tb_equipe.nome_equipe',$value);
+                break;
+
+                case 'cidade':
+                    $this->db->where($campo,$value);
+                break;
+
+                case 'id_categoria':
+                    $this->db->where('tb_equipe.id_categoria',$value);
+                break;
+
+                case 'id_modalidade':
+                    $this->db->where('tb_modalidade.id_modalidade',$value);
+                break;
+
+                default:
+                     $this->db->like($campo,$value);
+                break;
+
+            }
+        }
+
+        
+        return $this->db->get()->result_object();
+    }
+
+
     public function Ranking($filters) {
         $this->db->select('*');
         $this->db->select_sum('tb_equipe_pontuacao.pontos');

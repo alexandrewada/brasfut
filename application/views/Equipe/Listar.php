@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/partida/listar.css');?>">
+<link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/equipe/listar.css');?>">
 <div class='row'>
 	<div class='col-md-12'>
 		<div class='conteudo'>
@@ -30,17 +30,7 @@
 							
 						</select>
 					</div>	
-					<div class="col-xs-12 col-sm-3 form-group">
-						<label>Locais</label><br>
-						<select name="id_local" class="form-control" >
-							
-							<option   value="">Todos</option>
-							<?foreach ($listarLocais as $key => $v):?>
-							<option <?=($_GET['id_local'] == $v->id_local ? 'selected' : '');?> value='<?=$v->id_local;?>'><?=$v->nome_local;?></option>
-							<?endforeach;?>
-							
-						</select>
-					</div>
+
 					<div class="col-xs-12 col-sm-3 col-md-2 form-group">
 						<label>Estado</label><br>
 						<select  name="estado" class="form-control" >
@@ -62,40 +52,25 @@
 					
 				</div>
 				<div class='text-center'>
-					<input class='btn btn-primary' style="margin-top: 5px;" type="submit" class="form-control" value="Filtrar Partidas">
+					<input class='btn btn-primary' style="margin-top: 5px;" type="submit" class="form-control" value="Filtrar equipes">
 				</div>
 			</form>
 			<hr>
-			<?if(count($partidas) > 0):?>
+			<?if(count($equipes) > 0):?>
 			
-			<h4 class='text-left'>Lista de Partidas</h4>
+			<h4 class='text-left'>Lista de equipes</h4>
 			
 			<table class='table'>
 				<thead>
 					<tr>
-						<td>Data</td>
-						<td>Equipe Desafiante</td>
+						<td>Nome Equipe</td>
 						<td>Informações</td>
 					</th>
 				</thead>
 				<tbody>
-					<?foreach ($partidas as $key => $v):?>
+					<?foreach ($equipes as $key => $v):?>
 					<tr>
-						<td class='lista-convites'>
-							<li >
-								<a target="_BLANK" href="<?=base_url('partida/detalhes/'.$v->id_partida);?>">
-									<div class="box-calendario">
-										<span class="mes"><?=date('M',strtotime($v->data_inicio));?></span>
-										<span class="dia"><?=date('d',strtotime($v->data_inicio));?></span>
-										<span class="semana" style="
-    font-size: 10px;
-"><?=date('l',strtotime($v->data_inicio));?></span>
-								
-										<span class="hora_comeca"><b style="color: green;"><?=date('H:i',strtotime($v->data_inicio));?></b>~<b style="color:red;"><?=date('H:i',strtotime($v->data_fim));?></b></span>
-									</div>
-								</a>
-							</li>
-						</td>
+			
 						<td style="vertical-align: middle;"> 
 							<a target="_BLANK" href='<?=base_url('equipe/detalhes/'.$v->id_equipe);?>'>
 							<img width="50" src='<?=$v->logo;?>'/>
@@ -105,13 +80,13 @@
 						</a>
 					</td>
 
-					<td style="vertical-align: middle;"><?= '<b>Local: </b>'.$v->nome_local .'<br><b>Modalidade: </b>'.$v->nome_modalidade.' <br> <b>Cidade: </b>'.$v->cidade.' / '.$v->uf.'<br> <b>Bairro: </b>'.$v->bairro;?></td>
+					<td style="vertical-align: middle;"><?= '<b>Categoria: </b>'.$v->nome_categoria .'<br><b>Modalidade: </b>'.$v->nome_modalidade.' <br> <b>Cidade: </b>'.$v->cidade.' / '.$v->uf.'<br> <b>Bairro: </b>'.$v->bairro;?></td>
 				</tr>
 				<?endforeach;?>
 			</tbody>
 		</table>
 		<?else:?>
-		<h2 class="text-center">Nenhuma partida encontrada.</h2>
+		<h2 class="text-center">Nenhuma equipe encontrada.</h2>
 		<?endif;?>
 		
 	</div>

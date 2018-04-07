@@ -19,6 +19,20 @@ class Equipe extends CI_Controller {
 		$this->template->load('Templates/Dashboard','Equipe/Ranking',$view);
 	}
 
+	public function Listar() {
+			$this->load->model('Modalidade_model');
+			$this->load->model('Equipe_model');
+			$this->load->model('Categoria_model');
+			$this->load->model('Local_model');
+			$view['equipes']					= $this->Equipe_model->getEquipes($this->input->get(null,true));
+			$view['listarModalidade']	= $this->Modalidade_model->getAll();
+			$view['listarCategorias']	= $this->Categoria_model->getAll();
+			$view['listarCidades']		= $this->Local_model->getCidades();
+			$view['listarEstados']		= $this->Local_model->getEstados();
+			$view['listarLocais']		  = $this->Local_model->getLocais();
+			$this->template->load('Templates/Dashboard','Equipe/Listar',$view);
+	}
+
 
 	public function uploademblema() {
 
