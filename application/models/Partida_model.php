@@ -635,18 +635,17 @@ class Partida_model extends CI_Model {
         
         // Partida existe
         if($dados_partida  != false){
-            if($dados_partida->id_equipe_desafiante == $this->session->userdata('id_equipe')){
+            // if($dados_partida->id_equipe_desafiante == $this->session->userdata('id_equipe')){
 
-              // if($this->DiferenciaDias(date('Y-m-d H:i:s'),$dados_partida->data_inicio) > 7){
-              if(true == true){
-	              $this->db->update($this->table,array('status' => 5),"id_partida = $id_partida");
+              if($this->DiferenciaDias(date('Y-m-d H:i:s'),$dados_partida->data_inicio) >= 5){
+                $this->db->update($this->table,array('status' => 5),"id_partida = $id_partida");
 	              return array('erro' => false, 'msg' => 'Sua partida foi cancelada com sucesso.');
           	  } else {
-          	  	  return array('erro' => true, 'msg' => 'Sua partida não pode ser cancelada.');
+          	  	  return array('erro' => true, 'msg' => 'Sua partida não pode ser cancelada, por causa que você precisava ter solicitado com 5 dias de antecedência');
           	  }
-            } else {
-              return array('erro' => true, 'msg' => 'Você não pode cancelar uma partida que não é sua.');               
-            }
+            // } else {
+            //   return array('erro' => true, 'msg' => 'Você não pode cancelar uma partida que não é sua.');               
+            // }
 
         } else {
             return array('erro' => true, 'msg' => 'A partida que você deseja cancelar não existe.');

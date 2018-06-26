@@ -277,13 +277,29 @@
 					if($partidaCriadaSucesso == true) {
 
 						if(count($_POST['id_equipes_convidadas']) != 0){
+
+							$this->load->model('Equipe_model');
+							$this->load->model('Notificacao_model');
+
 							foreach ($_POST['id_equipes_convidadas'] as $key => $id_equipe_desafiada) {
 								if($this->session->userdata()['id_equipe'] != $id_equipe_desafiada) {
+									
+									$EquipeDesafiada 	= $this->Equipe_model->getByResponsabelByEquipe($id_equipe_desafiada);
+									$EquipeDesafiante = $this->Equipe_model->getByResponsabelByEquipe($this->session->userdata()['id_equipe']);
+
+									$msg = "
+									A equipe ".$EquipeDesafiante->nome_equipe." convidou você para uma partida <a target='_BLANK' href='".base_url('partida/detalhes/'.$id_partida)."'>Ver detalhes</a>
+
+									";
+
+									$this->Notificacao_model->Notificacao($EquipeDesafiada->id_pessoa,$msg);
+
+
 									$dadosInsert = array(
-															'id_equipe_desafiante' => $this->session->userdata()['id_equipe'],
-															'id_equipe_desafiada'  => $id_equipe_desafiada,
-															'id_partida'		   => $id_partida,
-															'data'				   => date('Y-m-d H:i:s')
+															'id_equipe_desafiante' 	=> $this->session->userdata()['id_equipe'],
+															'id_equipe_desafiada'  	=> $id_equipe_desafiada,
+															'id_partida'		   			=> $id_partida,
+															'data'				   				=> date('Y-m-d H:i:s')
 												  );
 									$this->db->insert('tb_partida_convites',$dadosInsert);
 								}

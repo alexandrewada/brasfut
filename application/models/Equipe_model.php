@@ -222,6 +222,21 @@ class Equipe_model extends CI_Model
         }
     }
 
+    public function getByResponsabelByEquipe($id_equipe) {
+
+        $this->db->select('*');
+        $this->db->from('tb_equipe');
+        $this->db->join('tb_pessoa','tb_equipe.id_pessoa_responsavel = tb_pessoa.id_pessoa','inner');
+        $this->db->where('tb_equipe.id_equipe',$id_equipe);
+        $query = $this->db->get();
+        if($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return false;
+        }
+    }
+
+
     public function getByIDResponsavel($id) {  
         $query = $this->db->get_where($this->table, array('id_pessoa_responsavel' => $id));
         if($query->num_rows() > 0) {
