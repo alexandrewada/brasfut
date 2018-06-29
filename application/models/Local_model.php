@@ -3,8 +3,6 @@
 class Local_model extends CI_Model
 {
 
-
-
     private $table = 'tb_local';
 
 
